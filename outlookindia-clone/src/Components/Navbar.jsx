@@ -1,5 +1,6 @@
 import React from 'react'
 import {Flex,Box,Image, Text, Spacer, HStack} from '@chakra-ui/react'
+import {Link} from 'react-router-dom'
 
 const Navbar = () => {
     const week=['Sunday','Monaday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -10,6 +11,9 @@ const Navbar = () => {
     const today = date.getDay();
     const dateValue=week[today]+","+currentMonth+"/"+currentDate+"/"+currentYear;
     // console.log(week[today]+","+currentMonth+"/"+currentDate+"/"+currentYear)
+    const handleLogin = () =>{
+        alert("Clicked Login")
+    }
     
   return (
     <>
@@ -35,17 +39,19 @@ const Navbar = () => {
     </Box>
     <Box>
         <Flex alignItems='center' justifyContent='center' gap={2}>
-            <Text fontSize='sm'>LOGIN</Text>
+            <Text fontSize='sm' onClick={handleLogin}>LOGIN</Text>
             <Text color='red.500'>|</Text>
             <Text fontSize='sm'>SUBSCRIBE</Text>
         </Flex>
     </Box>
+    {/* <Box> */}
     <HStack  mx='20px' mt='10px'>
-        <Box _hover={{
+        <Box to='/' _hover={{
             background: "blackAlpha.100",
             color: "red.500",
             border:"1px solid gray"
-        }} h='50px' padding='5px'>HOME</Box>
+        }} h='50px' padding='5px'>
+            <Link to="/">HOME</Link></Box>
         <Box _hover={{
             background: "blackAlpha.100",
             color: "red.500",
@@ -75,7 +81,7 @@ const Navbar = () => {
             background: "blackAlpha.100",
             color: "red.500",
             border:"1px solid gray"
-        }} h='50px' padding='5px'>SPORTS</Box>
+        }} h='50px' padding='5px'><Link to="/sports">SPORTS</Link></Box>
         <Box _hover={{
             background: "blackAlpha.100",
             color: "red.500",
@@ -112,6 +118,18 @@ const Navbar = () => {
             border:"1px solid gray"
         }} h='50px' padding='5px'>OTHERS</Box>
     </HStack>
+    {/* </Box> */}
+    <div>
+      {/* 👇️ colored horizontal line */}
+      <hr
+        style={{
+          background: 'red',
+        //   color: 'red',
+        //   borderColor: 'lime',
+          height: '1px',
+        }}
+      />
+      </div>
     </>
   )
 }
