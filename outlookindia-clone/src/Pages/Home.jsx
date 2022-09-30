@@ -1,4 +1,4 @@
-import { Box, Center, Grid, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Badge, Box, Center, Grid, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -44,7 +44,7 @@ const Home = () => {
                     <Text>{news.description}</Text>
                     {/* <Text><Link to={news.url}>Read More...</Link></Text> */}
                     <ExternalLink href={news.url}>
-                        <span>Read More...</span>
+                        <Badge colorScheme="green">Read More...</Badge>
                     </ExternalLink>
                     <div>
                 {/* 👇️ colored horizontal line */}
