@@ -1,6 +1,16 @@
 import React from 'react'
-import {Flex,Box,Image, Text, Spacer, HStack} from '@chakra-ui/react'
+import {Flex,Box,Image, Text, Spacer, HStack, useDisclosure, Button, FormControl, FormLabel, Input, InputLeftAddon, InputGroup} from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+  } from '@chakra-ui/react'
+import { useState } from 'react'
 
 const Navbar = () => {
     const week=['Sunday','Monaday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -11,10 +21,14 @@ const Navbar = () => {
     const today = date.getDay();
     const dateValue=week[today]+","+currentMonth+"/"+currentDate+"/"+currentYear;
     // console.log(week[today]+","+currentMonth+"/"+currentDate+"/"+currentYear)
-    const handleLogin = () =>{
-        alert("Clicked Login")
-    }
     
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [loginText,setLoginText] = useState("LOGIN");
+    const [userName,setUserName] = useState("")
+    const handleLogin = () =>{
+        setLoginText("Hi"+" "+userName)
+     }
   return (
     <>
     <Box mx='17' mt='15'>
@@ -39,9 +53,39 @@ const Navbar = () => {
     </Box>
     <Box>
         <Flex alignItems='center' justifyContent='center' gap={2}>
-            <Text fontSize='sm' onClick={handleLogin}>LOGIN</Text>
+            <Text fontSize='sm' onClick={onOpen}>{loginText}</Text>
+            {/* <Button onClick={onOpen}>Open Modal</Button> */}
+
+            <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            >
+                <ModalOverlay />
+                <ModalContent>
+                    <Image boxSize='100px' ml="170px" mt="60px" src='https://conscent-public.s3.ap-south-1.amazonaws.com/prod/Outlook%20India%20/paywall-brandlogo/601a8ea4f2149f089782814f-b73040' />
+                <ModalHeader ml="120px">OUTLOOK INDIA</ModalHeader>
+                {/* <Text ml="100px">Enter Mobile No. For Verification</Text> */}
+                <ModalCloseButton />
+                <ModalBody pb={6}>
+                    <FormControl>
+                {/* <FormLabel>First name</FormLabel> */}
+                        {/* <InputGroup>
+                        <InputLeftAddon children='+91' /> */}
+                        <Input placeholder='Enter Username' name='username' value={userName} onChange={(e)=>setUserName(e.target.value)}/>
+                        {/* </InputGroup> */}
+                    </FormControl>
+                </ModalBody>
+
+                    <ModalFooter>
+                    <Button colorScheme='blue'mr="150px" onClick={handleLogin}>
+                        LOGIN
+                    </Button>
+                    {/* <Button onClick={onClose}>Cancel</Button> */}
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
             <Text color='red.500'>|</Text>
-            <Text fontSize='sm'>SUBSCRIBE</Text>
+            <Text fontSize='sm' ><Link to='/subscribe'>SUBSCRIBE</Link></Text>
         </Flex>
     </Box>
     {/* <Box> */}
@@ -130,6 +174,7 @@ const Navbar = () => {
         }}
       />
       </div>
+
     </>
   )
 }
