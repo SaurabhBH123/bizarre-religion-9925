@@ -38,7 +38,9 @@ const Navbar = () => {
             </Box>
             <Spacer/>
             <Box boxSize='sm' h='10' w='200px'>
+                <Link to="/">
                 <Image src='https://www.outlookindia.com/images/home_new_v4/logo_outlook.svg' alt='logo' />
+                </Link>
             </Box>
             <Spacer/>
             <Box h='10'>
@@ -164,16 +166,13 @@ const Navbar = () => {
     </HStack>
     {/* </Box> */}
     <div>
-      {/* 👇️ colored horizontal line */}
       <hr
         style={{
           background: 'red',
-        //   color: 'red',
-        //   borderColor: 'lime',
           height: '1px',
         }}
       />
-      </div>
+    </div>
 
     </>
   )
