@@ -4,14 +4,13 @@ import { useEffect } from 'react'
 import { Badge, Box, CircularProgress, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
 import { ExternalLink } from 'react-external-link';
 
-
-const Sports = () => {
-  const [headlines,setHeadlines] = useState([]);
-  const [isLoading,setIsLoading] = useState(false);
+const Health = () => {
+    const [headlines,setHeadlines] = useState([]);
+    const [isLoading,setIsLoading] = useState(false);
 
     const getData=()=>{
       setIsLoading(true)
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=323ce39e51c34fb9b8701f874fa25371`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=323ce39e51c34fb9b8701f874fa25371`)
         .then((res)=>setHeadlines(res.data.articles))
         .catch((err)=>console.log(err))
         .finally(()=>setIsLoading(false))
@@ -21,13 +20,12 @@ const Sports = () => {
         getData();
     },[])
 
-    // console.log(headlines)
     if(isLoading){
       return <CircularProgress isIndeterminate color='green.300' />
     }
   return (
     <div>
-      <SimpleGrid columns={{ sm: 2, md: 4 }} spacing={10} mt="20px" px='10px'mb="20px">
+        <SimpleGrid columns={{ sm: 2, md: 4 }} spacing={10} mt="20px" px='10px'mb="20px">
         {
           headlines?.map((news)=>(
           <Box boxShadow='dark-lg' p='6' rounded='md' key={news.publishedAt}>
@@ -45,4 +43,4 @@ const Sports = () => {
   )
 }
 
-export default Sports
+export default Health
