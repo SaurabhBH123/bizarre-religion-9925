@@ -1,5 +1,5 @@
 import React from 'react'
-import {Flex,Box,Image, Text, Spacer, HStack, useDisclosure, Button, FormControl, FormLabel, Input, InputLeftAddon, InputGroup} from '@chakra-ui/react'
+import {Flex,Box,Image, Text, Spacer, HStack, useDisclosure, Button, FormControl, Input} from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
 import {
     Modal,
@@ -27,7 +27,7 @@ const Navbar = () => {
     const [loginText,setLoginText] = useState("LOGIN");
     const [userName,setUserName] = useState("")
     const handleLogin = () =>{
-        setLoginText("Hi"+" "+userName)
+        setLoginText(`Hi ${userName}`)
      }
   return (
     <>
@@ -107,7 +107,7 @@ const Navbar = () => {
             background: "blackAlpha.100",
             color: "red.500",
             border:"1px solid gray"
-        }} h='50px' padding='5px'>BUSINESS</Box>
+        }} h='50px' padding='5px'><Link to="/business">BUSINESS</Link></Box>
         <Box _hover={{
             background: "blackAlpha.100",
             color: "red.500",
@@ -137,7 +137,7 @@ const Navbar = () => {
             background: "blackAlpha.100",
             color: "red.500",
             border:"1px solid gray"
-        }} h='50px' padding='5px'>ENTERTAINMENT</Box>
+        }} h='50px' padding='5px'><Link to="/entertainment">ENTERTAINMENT</Link></Box>
         <Box _hover={{
             background: "blackAlpha.100",
             color: "red.500",
@@ -152,7 +152,7 @@ const Navbar = () => {
             background: "blackAlpha.100",
             color: "red.500",
             border:"1px solid gray"
-        }} h='50px' padding='5px'>HEALTH</Box>
+        }} h='50px' padding='5px'><Link to="/health">HEALTH</Link></Box>
         <Box _hover={{
             background: "blackAlpha.100",
             color: "red.500",

@@ -1,4 +1,4 @@
-import { Badge, Box, Center, Grid, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react'
+import { Badge, Box, Center, CircularProgress, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -8,10 +8,14 @@ import { ExternalLink } from 'react-external-link';
 
 const Home = () => {
     const [headlines,setHeadlines] = useState([]);
+    const [isLoading,setIsLoading] = useState(false);
 
     const getData=()=>{
+        setIsLoading(true)
         axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=323ce39e51c34fb9b8701f874fa25371`)
         .then((res)=>setHeadlines(res.data.articles))
+        .catch((err)=>console.log(err))
+        .finally(()=>setIsLoading(false))
     }
 
     useEffect(()=>{
@@ -19,6 +23,9 @@ const Home = () => {
     },[])
 
     // console.log(headlines)
+    if(isLoading){
+        return <CircularProgress isIndeterminate color='green.300' />
+    }
   return (
     <>
     <Heading>Top Headlines</Heading>
